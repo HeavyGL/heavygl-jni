@@ -19,7 +19,7 @@ generate-headers: $(JAVA_SRC_DIR)/HGL10C.java
 # For windows
 build-dll: $(C_SRC_DIR)/org_josl_heavygl_HGL10C.c
 	@echo : Generating 64-bits DLL file...
-	@"$(gcc64)" -shared -o $(BUILD_DLL_DIR)/heavygl.dll -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/win32" $(C_SRC_DIR)/org_josl_heavygl_HGL10C.c
+	@"$(gcc64)" -shared -o $(BUILD_DLL_DIR)/heavygl.dll -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/win32" $(C_SRC_DIR)/*.c
 	@rem echo : Generating 32-bits DLL file...
-	@rem "$(gcc32)" -shared -o $(BUILD_DLL_DIR)/heavygl32.dll -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/win32" $(C_SRC_DIR)/org_josl_heavygl_HGL10C.c
+	@rem "$(gcc32)" -shared -o $(BUILD_DLL_DIR)/heavygl32.dll -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/win32" $(C_SRC_DIR)/*.c
 	@echo : Done!
