@@ -20,11 +20,11 @@ public class GLRaster {
 	public GLRaster(int width, int height) {
 		this.width = width;
 		this.height = height;
-		
+
 		this.pixels = memAllocInt(width * height);
 		this.address = memAddress(pixels);
 	}
-	
+
 	public void copy(BufferedImage bi) {
 		pixels.position(0);
 		int[] biPixels = ((DataBufferInt) bi.getRaster().getDataBuffer()).getData();
@@ -33,11 +33,11 @@ public class GLRaster {
 				biPixels[i] = pixels.get();
 		}
 	}
-	
+
 	public void free() {
 		memFree(pixels);
 	}
-	
+
 	public void makeCurrentContext() {
 		glXSetPxBuffer(pixels, width, height);
 	}
