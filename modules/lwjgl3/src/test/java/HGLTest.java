@@ -4,7 +4,6 @@
  */
 
 import static java.awt.image.BufferedImage.*;
-import static java.lang.Math.*;
 import static javax.swing.JFrame.*;
 import static org.josl.heavygl.HGL11.*;
 
@@ -39,13 +38,15 @@ public class HGLTest extends JComponent implements Runnable {
 
 		Timer timer = new Timer(16, e -> repaint());
 		timer.start();
+		glClearColor(0.2f, 0.2f, 0.2f);
+		System.out.println("Currently running on HeavyGL " + glGetString(GL_VERSION) + " " + glGetString(GL_VENDOR));
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		{
-			glClearColor((float) random(), (float) random(), (float) random());
 			glClear();
+			// glDrawLogo(GL_LOGO_SCHEME_WHITE);
 		}
 		raster.copy(bi);
 		g.drawImage(bi, 0, 0, this);

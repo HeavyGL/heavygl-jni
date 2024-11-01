@@ -29,16 +29,15 @@ public class HGL11C {
 	// --- [ glClearColor ] ---
 
 	/**
-	 * Sets the clear value for fixed-point and floating-point color buffers in RGBA
+	 * Sets the clear value for fixed-point and floating-point color buffers in RGB
 	 * mode. The specified components are stored as floating-point values.
 	 *
 	 * @param red   the value to which to clear the R channel of the color buffer
 	 * @param green the value to which to clear the G channel of the color buffer
 	 * @param blue  the value to which to clear the B channel of the color buffer
-	 * @param alpha the value to which to clear the A channel of the color buffer
 	 */
 	static native void nglClearColor(float r, float g, float b);
-
+	
 	// --- [ glClear ] ---
 
 	/**
@@ -55,4 +54,12 @@ public class HGL11C {
 	 */
 	static native int nglGetError();
 
+	// --- [ glGetString ] ---
+	
+	/**
+	 * Returns a string constant specified by the following id.
+	 * 
+	 * @return a string constant specified by the following id.
+	 */
+	static native long nglGetString(int id);
 }

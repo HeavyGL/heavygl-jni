@@ -11,15 +11,29 @@ import java.nio.IntBuffer;
 import org.lwjgl.system.NativeType;
 
 /**
- * The HeavyGL functionality up to version 1.0.
+ * The HeavyGL functionality up to version 1.2.
  */
 public class HGL11 {
+
+	/** GlGetString */
+	public static final int GL_VERSION = 0x1F00, GL_VENDOR = 0x1F02;
+
+	/** GlErrors */
+	public static final int GL_NO_ERROR                      = 0x0,
+							GL_INVALID_ENUM                  = 0x500,
+							GL_INVALID_VALUE                 = 0x501,
+							GL_INVALID_OPERATION             = 0x502,
+							GL_STACK_OVERFLOW                = 0x503,
+							GL_STACK_UNDERFLOW               = 0x504,
+							GL_OUT_OF_MEMORY                 = 0x505,
+							GL_INVALID_FRAMEBUFFER_OPERATION = 0x506,
+							GL_CONTEXT_LOST                  = 0x507,
+							GL_TABLE_TOO_LARGE1              = 0x8031;
 
 	static { HGL.initialize(); }
 
 	/** Don't let anyone instantiate this class */
-	private HGL11() {
-	}
+	private HGL11() {}
 
 	// --- [ glXSetContext ] ---
 
@@ -38,16 +52,20 @@ public class HGL11 {
 	// --- [ glClearColor ] ---
 
 	/**
-	 * Sets the clear value for fixed-point and floating-point color buffers in RGBA
+	 * Sets the clear value for fixed-point and floating-point color buffers in RGB
 	 * mode. The specified components are stored as floating-point values.
 	 *
 	 * @param red   the value to which to clear the R channel of the color buffer
 	 * @param green the value to which to clear the G channel of the color buffer
 	 * @param blue  the value to which to clear the B channel of the color buffer
-	 * @param alpha the value to which to clear the A channel of the color buffer
 	 */
 	public static void glClearColor(float r, float g, float b) {
 		HGL11C.nglClearColor(r, g, b);
+	}
+
+	public static String glGetString(int id) {
+		long address = HGL11C.nglGetString(id);
+		return memUTF8(address);
 	}
 
 	// --- [ glClear ] ---
