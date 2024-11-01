@@ -1,11 +1,12 @@
 /*
- * HeavyGL Specification 1.0
+ * HeavyGL Specification 1.1
  */
 
 #ifdef __WIN32__
 
 #include "HGL/hgl.h"
 #include <stdint.h>
+#include <string.h>
 
 static int width = 0, height = 0, area = 0;
 static uint32_t * pixels = NULL;
@@ -14,7 +15,7 @@ static int error = 0;
 static int clearColor = 0;
 
 /* HeavyGL Special Functions */
-void glXSetPxBuffer(intptr_t address, int w, int h)
+void glXSetContext(intptr_t address, int w, int h)
 {
     width = w;
     height = h;
@@ -34,8 +35,7 @@ void glClearColor(float r, float g, float b)
 
 void glClear()
 {
-    for (int i = 0; i < area; i++)
-        pixels[i] = clearColor;
+    memset(pixels, clearColor, sizeof(pixels));
 }
 
 GLerror glGetError()

@@ -1,5 +1,5 @@
 /*
- * HeavyGL Specification 1.0
+ * HeavyGL Specification 1.1
  */
 
 #pragma once
@@ -11,11 +11,13 @@
 typedef int GLerror;
 
 /* HeavyGL Special Functions */
-void glXSetPxBuffer(intptr_t, int, int);
+void glXSetContext(intptr_t, int, int);
 
 /* HeavyGL Common Functions */
 void glClearColor(float, float, float);
 void glClear();
+
+void glFillRect(float, float, float, float);
 
 GLerror glGetError();
 
