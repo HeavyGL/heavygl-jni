@@ -4,7 +4,7 @@
  */
 package org.josl.heavygl;
 
-import static org.josl.heavygl.HGL10.*;
+import static org.josl.heavygl.HGL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.awt.image.BufferedImage;
@@ -39,7 +39,7 @@ public class GLRaster {
 	}
 
 	public void makeCurrentContext() {
-		glXSetPxBuffer(pixels, width, height);
+		glXSetContext(pixels, width, height);
 	}
 
 }

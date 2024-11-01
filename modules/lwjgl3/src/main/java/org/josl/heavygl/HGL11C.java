@@ -4,36 +4,27 @@
  */
 package org.josl.heavygl;
 
-import static org.lwjgl.system.MemoryUtil.*;
-
-import java.nio.IntBuffer;
-
-import org.lwjgl.system.NativeType;
-
 /**
- * The HeavyGL functionality up to version 1.0.
+ * The class where all the native methods are located.
  */
-public class HGL10 {
-
-	static { HGL.initialize(); }
+public class HGL11C {
 
 	/** Don't let anyone instantiate this class */
-	private HGL10() {
+	private HGL11C() {
 	}
 
-	// --- [ glXSetPxBuffer ] ---
+	// --- [ glXSetContext ] ---
 
 	/**
 	 * Sets the specified buffer to use in order to draw pixels and do graphics
 	 * stuff.
 	 * 
-	 * @param pixels The buffer used for rendering (integer RGB type)
-	 * @param w      The width of the viewport
-	 * @param h      The height of the viewport
+	 * @param address The address of the buffer used for rendering (integer RGB
+	 *                type)
+	 * @param w       The width of the viewport
+	 * @param h       The height of the viewport
 	 */
-	public static void glXSetPxBuffer(@NativeType("uint32_t *") IntBuffer pixels, int w, int h) {
-		HGL10C.nglXSetPxBuffer(memAddress(pixels), w, h);
-	}
+	static native void nglXSetContext(long address, int w, int h);
 
 	// --- [ glClearColor ] ---
 
@@ -46,17 +37,22 @@ public class HGL10 {
 	 * @param blue  the value to which to clear the B channel of the color buffer
 	 * @param alpha the value to which to clear the A channel of the color buffer
 	 */
-	public static void glClearColor(float r, float g, float b) {
-		HGL10C.nglClearColor(r, g, b);
-	}
+	static native void nglClearColor(float r, float g, float b);
 
 	// --- [ glClear ] ---
 
 	/**
 	 * Clears the current pixel buffer with the selected clear color.
 	 */
-	public static void glClear() {
-		HGL10C.nglClear();
-	}
+	static native void nglClear();
+
+	// --- [ glGetError ] ---
+
+	/**
+	 * Returns the latest error occurred in HeavyGL runtime.
+	 * 
+	 * @return the latest error occurred in HeavyGL runtime.
+	 */
+	static native int nglGetError();
 
 }

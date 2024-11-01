@@ -6,7 +6,7 @@
 import static java.awt.image.BufferedImage.*;
 import static java.lang.Math.*;
 import static javax.swing.JFrame.*;
-import static org.josl.heavygl.HGL10.*;
+import static org.josl.heavygl.HGL11.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
