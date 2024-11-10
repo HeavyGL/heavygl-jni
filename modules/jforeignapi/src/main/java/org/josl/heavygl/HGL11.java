@@ -5,9 +5,8 @@
 package org.josl.heavygl;
 
 import java.lang.foreign.MemorySegment;
-import java.lang.foreign.ValueLayout.OfByte;
+import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.nio.charset.StandardCharsets;
 
 import org.josl.heavygl.annotations.NativeType;
 
@@ -81,23 +80,9 @@ public class HGL11 {
 	}
 
 	public static String glGetString(int id) {
-		// Get the memory address of the string in memory
-		long address = HGL11C.nglGetString(id);
-		
-		System.out.println("okay!");
-
-		// Make a memory segment pointing to that object
-		MemorySegment ms = MemorySegment.ofAddress(address);
-		
-		return "STR";
-		/*
-		System.out.println("okay2!");
-		// Get the content from that pointer
-		byte[] strContents = ms.toArray(OfByte.JAVA_BYTE);
-		
-		System.out.println("okay3!");
-		// Return a string encoded using UTF-8
-		return new String(strContents);*/
+	    long address = HGL11C.nglGetString(id);
+	    MemorySegment ms = MemorySegment.ofAddress(address).reinterpret(Long.MAX_VALUE);
+	    return ms.getString(0);
 	}
 
 	// --- [ glClear ] ---

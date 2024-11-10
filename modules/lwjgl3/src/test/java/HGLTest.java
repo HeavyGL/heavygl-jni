@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
-import org.josl.heavygl.GLRaster;
+import org.josl.heavygl.util.GLRaster;
 
 public class HGLTest extends JComponent implements Runnable {
 
@@ -48,6 +48,7 @@ public class HGLTest extends JComponent implements Runnable {
 			glClear();
 			// glDrawLogo(GL_LOGO_SCHEME_WHITE);
 		}
+		
 		raster.copy(bi);
 		g.drawImage(bi, 0, 0, this);
 		g.dispose();

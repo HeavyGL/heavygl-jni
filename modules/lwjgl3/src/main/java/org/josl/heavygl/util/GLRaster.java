@@ -2,7 +2,7 @@
  * Copyleft HeavyGL. Open for everyone.
  * Licensed Under JOSL: https://opensource.org/license/bsd-3-clause
  */
-package org.josl.heavygl;
+package org.josl.heavygl.util;
 
 import static org.josl.heavygl.HGL11.*;
 import static org.lwjgl.system.MemoryUtil.*;

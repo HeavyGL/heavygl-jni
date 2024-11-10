@@ -4,47 +4,41 @@
  */
 package org.josl.heavygl;
 
+import static java.lang.foreign.ValueLayout.*;
 import static org.josl.heavygl.HGL11.*;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
-import java.lang.foreign.ValueLayout.OfInt;
 
-public class GLRaster {
+public final class GLRaster {
 
 	public final int width, height;
-	public MemorySegment address;
+	private final Arena arena;
+	public MemorySegment mem;
 
 	public GLRaster(int width, int height) {
 		this.width = width;
 		this.height = height;
-		
-		this.address = Arena.global().allocate(width * height);
+
+		this.arena = Arena.ofShared();
+		this.mem = arena.allocate(JAVA_INT, width * height);
 	}
 
 	public void copy(BufferedImage bi) {
-		// Get pixels from the address (as java integer)
-		int[] array = this.address.toArray(OfInt.JAVA_INT);
-		
-		System.out.println(this.address.address());
-		// Retrieve image pixels
 		int[] biPixels = ((DataBufferInt) bi.getRaster().getDataBuffer()).getData();
-		
-		// Calculate the minimum between the two arrays (to not cause stack underflow/overflow problems)
-		int len = Math.min(array.length, biPixels.length);
+		int len = Math.min(biPixels.length, width * height);
 
-		// Use Java system array copy function
-		System.arraycopy(array, 0, biPixels, 0, len);
+		for (int i = 0; i < len; i++)
+			biPixels[i] = mem.getAtIndex(JAVA_INT, i);
 	}
 
 	public void free() {
-		//address.unload();
+		this.arena.close();
 	}
 
 	public void makeCurrentContext() {
-		glXSetContext(address, width, height);
+		glXSetContext(mem, width, height);
 	}
-
 }
