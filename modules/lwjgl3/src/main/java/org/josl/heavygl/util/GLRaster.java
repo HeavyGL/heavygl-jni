@@ -26,12 +26,9 @@ public class GLRaster {
 	}
 
 	public void copy(BufferedImage bi) {
-		pixels.position(0);
+		pixels.rewind();
 		int[] biPixels = ((DataBufferInt) bi.getRaster().getDataBuffer()).getData();
-		{
-			for (int i = 0; pixels.hasRemaining(); i++)
-				biPixels[i] = pixels.get();
-		}
+		pixels.get(biPixels);
 	}
 
 	public void free() {

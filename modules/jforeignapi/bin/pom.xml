@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.josl.heavygl</groupId>
+	<artifactId>heavygl-lwjgl</artifactId>
+	<version>1.0.0</version>
+	<name>HeavyGL with Java Foreign API</name>
+
+	<properties>
+		<java.version>22</java.version>
+		<maven.compiler.source>22</maven.compiler.source>
+		<maven.compiler.target>22</maven.compiler.target>
+	</properties>
+
+	<!-- Plugins -->
+	<build>
+		<plugins>
+
+			<!-- Automatic license header -->
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>4.0</version>
+
+				<configuration>
+					<header>NOTICE</header>
+					<strictCheck>true</strictCheck>
+					<aggregate>true</aggregate>
+					<encoding>UTF-8</encoding>
+					<failIfMissing>true</failIfMissing>
+					<skipExistingHeaders>true</skipExistingHeaders>
+					<includes>
+						<include>**/src/main/java/**</include>
+						<include>**/src/test/java/**</include>
+					</includes>
+				</configuration>
+
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
