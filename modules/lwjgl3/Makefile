@@ -6,6 +6,8 @@ PROJ_ROOT = ../..
 TOOLS_DIR = $(PROJ_ROOT)/bin/tools
 BUILD_DLL_DIR = $(PROJ_ROOT)/bin/dll
 
+HGL_HEADER_FILES = $(C_SRC_DIR)/HGL/includes
+
 # Modify these if necessary
 gcc64 = $(TOOLS_DIR)/mingw64/bin/gcc
 gcc32 = gcc
@@ -23,7 +25,7 @@ clean:
 
 dlls: $(C_SRC_DIR)/org_josl_heavygl_HGL11C.c
 	@echo : Generating 64-bits DLL file...
-	@"$(gcc64)" -shared -o $(BUILD_DLL_DIR)/heavygl.dll -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/win32" $(C_SRC_DIR)/*.c
+	@"$(gcc64)" -shared -o $(BUILD_DLL_DIR)/heavygl.dll -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/win32" -I"$(HGL_HEADER_FILES)" $(C_SRC_DIR)/*.c $(C_SRC_DIR)/HGL/*.c
 	@echo : Done!
 
 copy-dlls: $(BUILD_DLL_DIR)/heavygl.dll
