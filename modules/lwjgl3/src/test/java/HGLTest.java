@@ -1,57 +1,44 @@
+
 /*
  * Copyleft HeavyGL. Open for everyone.
  * Licensed Under JOSL: https://opensource.org/license/bsd-3-clause
  */
-
-import static java.awt.image.BufferedImage.*;
 import static javax.swing.JFrame.*;
 import static org.josl.heavygl.HGL11.*;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.*;
 
-import org.josl.heavygl.util.GLRaster;
+import org.josl.heavygl.swing.GLPanel;
 
-public class HGLTest extends JComponent implements Runnable {
-
-	private static final long serialVersionUID = 1L;
+public class HGLTest implements Runnable {
 
 	private JFrame win;
-	private BufferedImage bi;
-	private GLRaster raster;
-
+	private GLPanel panel;
 	private final int width, height;
 
 	public HGLTest(int width, int height) {
 		this.width = width;
 		this.height = height;
-
-		this.raster = new GLRaster(width, height);
-		this.bi = new BufferedImage(width, height, TYPE_INT_RGB);
 	}
 
 	public void run() {
 		init();
-		raster.makeCurrentContext();
 
-		Timer timer = new Timer(16, e -> repaint());
+		Timer timer = new Timer(16, e -> panel.repaint());
 		timer.start();
 		glClearColor(0.2f, 0.2f, 0.4f);
 		System.out.println("Currently running on HeavyGL " + glGetString(GL_VERSION));
 	}
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		{
-			glClear();
-			// glDrawLogo(GL_LOGO_SCHEME_WHITE);
-		}
+	private void render() {
+		glClear();
+		float x = (float) (Math.cos((System.currentTimeMillis() / 1500.0 % 1500) * Math.PI * 2) * 100 + 150);
+		float y = (float) (Math.sin((System.currentTimeMillis() / 1500.0 % 1500) * Math.PI * 2) * 100 + 150);
 		
-		raster.copy(bi);
-		g.drawImage(bi, 0, 0, this);
-		g.dispose();
+		glFillRect(x, y, 120, 120);
 	}
 
 	private void init() {
@@ -66,7 +53,14 @@ public class HGLTest extends JComponent implements Runnable {
 		win.setResizable(false);
 		win.setLayout(new BorderLayout());
 
-		win.add(this, BorderLayout.CENTER);
+		win.add(panel = new GLPanel() {
+			private static final long serialVersionUID = 1L;
+
+			public void draw() {
+				render();
+			}
+
+		}, BorderLayout.CENTER);
 		win.pack();
 
 		win.setVisible(true);
