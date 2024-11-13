@@ -19,7 +19,7 @@ headers: $(JAVA_SRC_DIR)/HGL11C.java
 	@echo : Done!
 
 clean:
-	@rm -rf $(BUILD_DLL_DIR)/*
+	@rm -rf $(BUILD_DLL_DIR)/*.*
 
 # DLL's stuff
 
