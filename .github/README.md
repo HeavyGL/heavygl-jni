@@ -7,9 +7,6 @@
     </a>
   </h3>
 
-  <!-- Demo badge (should be replaced) -->
-  <img src="https://img.shields.io/badge/build-passing-green" loading="lazy" width="119" height="27" />  
-
 </div>
 
 
@@ -17,3 +14,9 @@
 > [!TIP]
 > Please, before using **HeavyGL**, we (The HeavyGL developers) strongly recommend reading the wiki (https://github.com/HeavyGL/heavygl/wiki).
 > Otherwise, try to follow some kind of tutorial.
+
+## What's HeavyGL JNI
+**JNI** stands for *Java Native Interface*, basically, a Java API that allows you to use low-level dlls in your project. Which can make rendering faster. Such as what HeavyGL does.
+
+## Is HeavyGL really that *Heavy*?
+No 😭
