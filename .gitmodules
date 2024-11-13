@@ -1,0 +1,3 @@
+[submodule "modules/lwjgl3/src/main/c/HGL"]
+	path = modules/lwjgl3/src/main/c/HGL
+	url = https://github.com/HeavyGL/heavygl.git
