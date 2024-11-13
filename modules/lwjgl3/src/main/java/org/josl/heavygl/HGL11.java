@@ -16,7 +16,7 @@ import org.lwjgl.system.NativeType;
 public class HGL11 {
 
 	/** GlGetString */
-	public static final int GL_VERSION = 0x1F00, GL_VENDOR = 0x1F02;
+	public static final int GL_VERSION = 0x1F02;
 
 	/** GlErrors */
 	public static final int GL_NO_ERROR                      = 0x0,

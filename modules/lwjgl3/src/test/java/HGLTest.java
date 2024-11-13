@@ -38,8 +38,8 @@ public class HGLTest extends JComponent implements Runnable {
 
 		Timer timer = new Timer(16, e -> repaint());
 		timer.start();
-		glClearColor(0.2f, 0.2f, 0.5f);
-		System.out.println("Currently running on HeavyGL " + glGetString(GL_VERSION) + " " + glGetString(GL_VENDOR));
+		glClearColor(0.2f, 0.2f, 0.4f);
+		System.out.println("Currently running on HeavyGL " + glGetString(GL_VERSION));
 	}
 
 	public void paintComponent(Graphics g) {
