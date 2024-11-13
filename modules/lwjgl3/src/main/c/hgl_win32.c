@@ -1,28 +1,26 @@
-/*
- * HeavyGL Specification 1.1
- */
-
 #ifdef __WIN32__
 
 #include "HGL/hgl.h"
+#include "HGL/buffers.h"
+#include "HGL/colors.h"
+
 #include <stdint.h>
 
-static int width = 0, height = 0, area = 0;
-static uint32_t * pixels = NULL;
-static int gl_error = GL_NO_ERROR;
+/* Static variables */
+static GLframebuffer * fb = NULL;
+static GLerror gl_error = GL_NO_ERROR;
 
 static int gl_clear_color = 0;
 
-/* HeavyGL Special Functions */
+/*** HeavyGL Special Functions ***/
+
 void glXSetContext(intptr_t address, int w, int h)
 {
-    width = w;
-    height = h;
-    area = w * h;
-    pixels = (uint32_t *) address;
+    if (fb == NULL)
+		fb = FB_Existing(address, w, h);
 }
 
-/* HeavyGL Common Functions */
+/*** HeavyGL Common Functions ***/
 
 // --- [ glClearColor ] ---
 
@@ -34,36 +32,36 @@ void glClearColor(float r, float g, float b)
         return;
     }
 
-    int ubr = (int) ((float) r * 255.0);
-    int ubg = (int) ((float) g * 255.0);
-    int ubb = (int) ((float) b * 255.0);
-
-    gl_clear_color = (ubr << 16) + (ubg << 8) + ubb;
+    gl_clear_color = ColorRGB_3F(r, g, b);
 }
+
+// --- [ glClear ] ---
 
 void glClear()
 {
-    for (int i = 0; i < area; i++)
-        pixels[i] = gl_clear_color;
+	FB_Fill(fb, gl_clear_color);
 }
+
+// --- [ glGetError ] ---
 
 GLerror glGetError()
 {
-    GLerror err = gl_error;
+    GLerror tmp = gl_error;
     gl_error = GL_NO_ERROR;
-    return err;
+    return tmp;
 }
+
+// --- [ glGetString ] ---
 
 const char* glGetString(int id)
 {
     switch (id)
     {
+		/** RETURNS THE HEAVYGL VERSION */
         case GL_VERSION:
-            return "Version 1.1";
-
-        case GL_VENDOR:
-            return "Community Edition";
-
+            return "a1.2.0 (preview)";
+			
+		/** WORKAROUND FOR INVALID ID'S */
         default:
             return "null";
     }

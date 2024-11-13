@@ -39,6 +39,14 @@ JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClear
 JNIEXPORT jint JNICALL Java_org_josl_heavygl_HGL11C_nglGetError
   (JNIEnv *, jclass);
 
+/*
+ * Class:     org_josl_heavygl_HGL11C
+ * Method:    nglGetString
+ * Signature: (I)J
+ */
+JNIEXPORT jlong JNICALL Java_org_josl_heavygl_HGL11C_nglGetString
+  (JNIEnv *, jclass, jint);
+
 #ifdef __cplusplus
 }
 #endif
