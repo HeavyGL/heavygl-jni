@@ -18,6 +18,11 @@ JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClear(JNIEnv*, jclass)
     glClear(); // Direct HeavyGL call
 }
 
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglFillRect (JNIEnv *, jclass, jfloat x, jfloat y, jfloat width, jfloat height)
+{
+    glFillRect((float) x, (float) y, (float) width, (float) height); // Direct HeavyGL call
+}
+
 JNIEXPORT jint JNICALL Java_org_josl_heavygl_HGL11C_nglGetError(JNIEnv*, jclass)
 {
     return (jint) (int) glGetError(); // Direct HeavyGL call

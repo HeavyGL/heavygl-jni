@@ -25,6 +25,14 @@ JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClearColor
 
 /*
  * Class:     org_josl_heavygl_HGL11C
+ * Method:    nglFillRect
+ * Signature: (FFFF)V
+ */
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglFillRect
+  (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     org_josl_heavygl_HGL11C
  * Method:    nglClear
  * Signature: ()V
  */
