@@ -1,4 +1,4 @@
-#include "HGL/hgl.h"
+#include <HGL/hgl.h>
 
 #include <jni.h>
 #include <stdint.h>
