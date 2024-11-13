@@ -1,3 +1,4 @@
 docs/
 bin/tools/mingw64/
 .vscode/
+bin/dll/heavygl.dll
