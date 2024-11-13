@@ -63,9 +63,8 @@ public class HGL11 {
 		HGL11C.nglClearColor(r, g, b);
 	}
 
-	public static String glGetString(int id) {
-		long address = HGL11C.nglGetString(id);
-		return memUTF8(address);
+	public static void glFillRect(float x, float y, float width, float height) {
+		HGL11C.nglFillRect(x, y, width, height);
 	}
 
 	// --- [ glClear ] ---
@@ -86,6 +85,11 @@ public class HGL11 {
 	 */
 	public static @NativeType("GLerror") int glGetError() {
 		return HGL11C.nglGetError();
+	}
+
+	public static String glGetString(int id) {
+		long address = HGL11C.nglGetString(id);
+		return memUTF8(address);
 	}
 
 }
