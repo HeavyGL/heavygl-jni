@@ -38,6 +38,8 @@ public class HGL11C {
 	 */
 	static native void nglClearColor(float r, float g, float b);
 	
+	static native void nglFillRect(float x, float y, float width, float height);
+	
 	// --- [ glClear ] ---
 
 	/**
