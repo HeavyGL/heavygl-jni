@@ -39,6 +39,7 @@ public class HGLTest implements Runnable {
 		float y = (float) (Math.sin((System.currentTimeMillis() / 1500.0 % 1500) * Math.PI * 2) * 100 + 150);
 		
 		glFillRect(x, y, 120, 120);
+		glFlush();
 	}
 
 	private void init() {

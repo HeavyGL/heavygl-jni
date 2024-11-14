@@ -35,20 +35,6 @@ public class HGL11 {
 	/** Don't let anyone instantiate this class */
 	private HGL11() {}
 
-	// --- [ glXSetContext ] ---
-
-	/**
-	 * Sets the specified buffer to use in order to draw pixels and do graphics
-	 * stuff.
-	 * 
-	 * @param pixels The buffer used for rendering (integer RGB type)
-	 * @param w      The width of the viewport
-	 * @param h      The height of the viewport
-	 */
-	public static void glXSetContext(@NativeType("uint32_t *") IntBuffer pixels, int w, int h) {
-		HGL11C.nglXSetContext(memAddress(pixels), w, h);
-	}
-
 	// --- [ glClearColor ] ---
 
 	/**
@@ -63,10 +49,29 @@ public class HGL11 {
 		HGL11C.nglClearColor(r, g, b);
 	}
 
+	// --- [ glFillRect ] ---
+
+	/**
+	 * Fills a rectangle with the selected bounds.
+	 * 
+	 * @param x      the x offset of the rectangle.
+	 * @param y      the y offset of the rectangle.
+	 * @param width  the width of the rectangle.
+	 * @param height the height of the rectangle.
+	 */
 	public static void glFillRect(float x, float y, float width, float height) {
 		HGL11C.nglFillRect(x, y, width, height);
 	}
 
+	// --- [ glFlush ] ---
+	
+	/**
+	 * Sends data from the back buffer to the front one.
+	 */
+	public static void glFlush() {
+		HGL11C.nglFlush();
+	}
+	
 	// --- [ glClear ] ---
 
 	/**
@@ -86,10 +91,29 @@ public class HGL11 {
 	public static @NativeType("GLerror") int glGetError() {
 		return HGL11C.nglGetError();
 	}
-
+	
+	/**
+	 * Returns a string constant specified by the following id.
+	 * 
+	 * @return a string constant specified by the following id.
+	 */
 	public static String glGetString(int id) {
 		long address = HGL11C.nglGetString(id);
 		return memUTF8(address);
+	}
+	
+	// --- [ glXSetContext ] ---
+
+	/**
+	 * Sets the specified buffer to use in order to draw pixels and do graphics
+	 * stuff.
+	 * 
+	 * @param pixels The buffer used for rendering (integer RGB type)
+	 * @param w      The width of the viewport
+	 * @param h      The height of the viewport
+	 */
+	public static void glXSetContext(@NativeType("uint32_t *") IntBuffer pixels, int w, int h) {
+		HGL11C.nglXSetContext(memAddress(pixels), w, h);
 	}
 
 }

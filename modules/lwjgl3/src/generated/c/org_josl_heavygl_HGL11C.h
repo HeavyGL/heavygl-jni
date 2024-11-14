@@ -9,11 +9,11 @@ extern "C" {
 #endif
 /*
  * Class:     org_josl_heavygl_HGL11C
- * Method:    nglXSetContext
- * Signature: (JII)V
+ * Method:    nglClear
+ * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglXSetContext
-  (JNIEnv *, jclass, jlong, jint, jint);
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClear
+  (JNIEnv *, jclass);
 
 /*
  * Class:     org_josl_heavygl_HGL11C
@@ -33,10 +33,10 @@ JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglFillRect
 
 /*
  * Class:     org_josl_heavygl_HGL11C
- * Method:    nglClear
+ * Method:    nglFlush
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClear
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglFlush
   (JNIEnv *, jclass);
 
 /*
@@ -54,6 +54,14 @@ JNIEXPORT jint JNICALL Java_org_josl_heavygl_HGL11C_nglGetError
  */
 JNIEXPORT jlong JNICALL Java_org_josl_heavygl_HGL11C_nglGetString
   (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     org_josl_heavygl_HGL11C
+ * Method:    nglXSetContext
+ * Signature: (JII)V
+ */
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglXSetContext
+  (JNIEnv *, jclass, jlong, jint, jint);
 
 #ifdef __cplusplus
 }

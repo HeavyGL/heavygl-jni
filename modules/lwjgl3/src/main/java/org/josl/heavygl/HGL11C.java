@@ -13,18 +13,12 @@ public class HGL11C {
 	private HGL11C() {
 	}
 
-	// --- [ glXSetContext ] ---
+	// --- [ glClear ] ---
 
 	/**
-	 * Sets the specified buffer to use in order to draw pixels and do graphics
-	 * stuff.
-	 * 
-	 * @param address The address of the buffer used for rendering (integer RGB
-	 *                type)
-	 * @param w       The width of the viewport
-	 * @param h       The height of the viewport
+	 * Clears the current pixel buffer with the selected clear color.
 	 */
-	static native void nglXSetContext(long address, int w, int h);
+	static native void nglClear();
 
 	// --- [ glClearColor ] ---
 
@@ -37,16 +31,26 @@ public class HGL11C {
 	 * @param blue  the value to which to clear the B channel of the color buffer
 	 */
 	static native void nglClearColor(float r, float g, float b);
-	
-	static native void nglFillRect(float x, float y, float width, float height);
-	
-	// --- [ glClear ] ---
+
+	// --- [ glFillRect ] ---
 
 	/**
-	 * Clears the current pixel buffer with the selected clear color.
+	 * Fills a rectangle with the selected bounds.
+	 * 
+	 * @param x      the x offset of the rectangle.
+	 * @param y      the y offset of the rectangle.
+	 * @param width  the width of the rectangle.
+	 * @param height the height of the rectangle.
 	 */
-	static native void nglClear();
+	static native void nglFillRect(float x, float y, float width, float height);
 
+	// --- [ glFlush ] ---
+	
+	/**
+	 * Sends data from the back buffer to the front one.
+	 */
+	static native void nglFlush();
+	
 	// --- [ glGetError ] ---
 
 	/**
@@ -57,11 +61,24 @@ public class HGL11C {
 	static native int nglGetError();
 
 	// --- [ glGetString ] ---
-	
+
 	/**
 	 * Returns a string constant specified by the following id.
 	 * 
 	 * @return a string constant specified by the following id.
 	 */
 	static native long nglGetString(int id);
+
+	// --- [ glXSetContext ] ---
+
+	/**
+	 * Sets the specified buffer to use in order to draw pixels and do graphics
+	 * stuff.
+	 * 
+	 * @param address The address of the buffer used for rendering (integer RGB
+	 *                type)
+	 * @param w       The width of the viewport
+	 * @param h       The height of the viewport
+	 */
+	static native void nglXSetContext(long address, int w, int h);
 }
