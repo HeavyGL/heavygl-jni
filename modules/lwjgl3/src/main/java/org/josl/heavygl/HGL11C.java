@@ -32,6 +32,25 @@ public class HGL11C {
 	 */
 	static native void nglClearColor(float r, float g, float b);
 
+	// --- [ glDisable ] ---
+
+	/**
+	 * Disables a HeavyGL capability or feature.
+	 * 
+	 * @param capability the feature to disable
+	 */
+	static native void nglDisable(int capability);
+	
+	// --- [ glEnable ] ---
+	
+	/**
+	 * Enables a HeavyGL capability or feature.
+	 * 
+	 * @param capability the feature to enable
+	 */
+	static native void nglEnable(int capability);
+
+	
 	// --- [ glFillRect ] ---
 
 	/**

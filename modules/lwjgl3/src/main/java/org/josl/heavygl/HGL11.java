@@ -15,10 +15,13 @@ import org.lwjgl.system.NativeType;
  */
 public class HGL11 {
 
-	/** GlGetString */
+	/** Features */
+	public static final int GL_DOUBLEBUFFER = 0xC32;
+	
+	/** Strings */
 	public static final int GL_VERSION = 0x1F02;
 
-	/** GlErrors */
+	/** Errors */
 	public static final int GL_NO_ERROR                      = 0x0,
 							GL_INVALID_ENUM                  = 0x500,
 							GL_INVALID_VALUE                 = 0x501,
@@ -47,6 +50,28 @@ public class HGL11 {
 	 */
 	public static void glClearColor(float r, float g, float b) {
 		HGL11C.nglClearColor(r, g, b);
+	}
+
+	// --- [ glDisable ] ---
+
+	/**
+	 * Disables a HeavyGL capability or feature.
+	 * 
+	 * @param capability the feature to disable
+	 */
+	public static void glDisable(int capability) {
+		HGL11C.nglDisable(capability);
+	}
+
+	// --- [ glEnable ] ---
+
+	/**
+	 * Enables a HeavyGL capability or feature.
+	 * 
+	 * @param capability the feature to enable
+	 */
+	public static void glEnable(int capability) {
+		HGL11C.nglEnable(capability);
 	}
 
 	// --- [ glFillRect ] ---

@@ -1,4 +1,4 @@
-#include <HGL/hgl.h>
+#include <hgl/HGL.h>
 
 #include <jni.h>
 #include <stdint.h>
@@ -11,6 +11,16 @@ JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClear(JNIEnv*, jclass)
 JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglClearColor(JNIEnv*, jclass, jfloat r, jfloat g, jfloat b)
 {
 	glClearColor((float) r, (float) g, (float) b); // Direct HeavyGL call
+}
+
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglDisable(JNIEnv*, jclass, int cap)
+{
+	glDisable((GLfeature) cap); // Direct HeavyGL call
+}
+
+JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglEnable(JNIEnv*, jclass, int cap)
+{
+	glEnable((GLfeature) cap); // Direct HeavyGL call
 }
 
 JNIEXPORT void JNICALL Java_org_josl_heavygl_HGL11C_nglFillRect(JNIEnv*, jclass, jfloat x, jfloat y, jfloat width, jfloat height)
