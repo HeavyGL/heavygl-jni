@@ -3,6 +3,7 @@
  * Copyleft HeavyGL. Open for everyone.
  * Licensed Under JOSL: https://opensource.org/license/bsd-3-clause
  */
+import static java.lang.Math.*;
 import static javax.swing.JFrame.*;
 import static org.josl.heavygl.HGL11.*;
 
@@ -32,13 +33,23 @@ public class HGLTest implements Runnable {
 		System.out.println("Currently running on HeavyGL " + glGetString(GL_VERSION));
 	}
 
-
 	private void render() {
 		glClear();
-		float x = (float) (Math.cos((System.currentTimeMillis() / 1500.0 % 1500) * Math.PI * 2) * 100 + 150);
-		float y = (float) (Math.sin((System.currentTimeMillis() / 1500.0 % 1500) * Math.PI * 2) * 100 + 150);
-		
-		glFillRect(x, y, 120, 120);
+		{
+			double time = System.currentTimeMillis();
+			double freq = 900;
+			
+			freq = 10000 - freq;
+			double a = time / freq % (int) freq * PI * 2;
+			float amplitude = 100;
+			int side = 120;
+
+			float x = (float) cos(a) * amplitude + ((width - side) / 2);
+			float y = (float) sin(a) * amplitude + ((height - side) / 2);
+
+			// TODO: glColorHSB(1, 0, 0);
+			glFillRect(x, y, side, side);
+		}
 		glFlush();
 	}
 
